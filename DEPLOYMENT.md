@@ -21,6 +21,7 @@ Recommended settings:
 - Build command: `pip install -r requirements-deploy.txt`
 - Start command: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
 - Health check path: `/health`
+- Environment variable: `SENTIMENT_MODE=simple`
 
 After deployment, check:
 
@@ -58,3 +59,5 @@ Open the Streamlit URL and check:
 ## Notes
 
 The current deployment uses SQLite by default. On free cloud services, local files may be reset when the server restarts or redeploys. For a more durable production setup, replace SQLite with a managed database and set `DATABASE_URL`.
+
+The local development environment can use the Transformer model by installing `backend/requirements-model.txt` and setting `SENTIMENT_MODE=transformer`. The Render deployment uses `SENTIMENT_MODE=simple` to avoid free-tier memory errors from loading `torch` and `transformers`.
