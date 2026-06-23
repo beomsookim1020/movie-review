@@ -23,6 +23,12 @@ Recommended settings:
 - Health check path: `/health`
 - Environment variable: `SENTIMENT_MODE=simple`
 
+For durable deployed data, create a managed PostgreSQL database and add its connection string:
+
+```text
+DATABASE_URL=postgresql://...
+```
+
 After deployment, check:
 
 ```text
@@ -58,6 +64,6 @@ Open the Streamlit URL and check:
 
 ## Notes
 
-The current deployment uses SQLite by default. On free cloud services, local files may be reset when the server restarts or redeploys. For a more durable production setup, replace SQLite with a managed database and set `DATABASE_URL`.
+The app uses SQLite by default for local development. On cloud services, local files may be reset when the server restarts or redeploys. For deployed usage, use a managed PostgreSQL database and set `DATABASE_URL`.
 
 The local development environment can use the Transformer model by installing `backend/requirements-model.txt` and setting `SENTIMENT_MODE=transformer`. The Render deployment uses `SENTIMENT_MODE=simple` to avoid free-tier memory errors from loading `torch` and `transformers`.
